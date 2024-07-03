@@ -6,8 +6,10 @@ mp_hands = mp.solutions.hands
 hands = mp_hands.Hands()
 
 # Load the bracelet image (replace with your own bracelet image path)
-bracelet_img = cv2.imread('SDC14597.png', cv2.IMREAD_UNCHANGED)
-
+bracelet_img = cv2.imread('/Jewelry/assets\SDC14597.png', cv2.IMREAD_UNCHANGED)
+if bracelet_img is None:
+    print(f"Error: Unable to load image from path: {bracelet_img}")
+    exit()
 # Define a reference size for the bracelet (you can adjust this based on your application)
 reference_size = 100  # Example size in pixels
 scaling_factor = 1.2  # Scale bracelet size by 20%

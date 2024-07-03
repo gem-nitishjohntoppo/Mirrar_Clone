@@ -7,8 +7,7 @@ mp_face_mesh = mp.solutions.face_mesh
 face_mesh = mp_face_mesh.FaceMesh(static_image_mode=False, max_num_faces=1, min_detection_confidence=0.5)
 
 # Load the earring image with transparency (e.g., a PNG file)
-earring_image = cv2.imread('Lovepik_com-401703983-earring.png', cv2.IMREAD_UNCHANGED)
-
+earring_image = cv2.imread('assets/1.png', cv2.IMREAD_UNCHANGED)
 
 # Function to overlay earring image on the face
 def overlay_earring(frame, ear_landmark, earring_img, offset_x=0, offset_y=0):

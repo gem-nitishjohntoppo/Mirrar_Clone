@@ -6,7 +6,7 @@ mp_hands = mp.solutions.hands
 hands = mp_hands.Hands()
 
 # Load the ring image (replace with your own ring image path)
-ring_img = cv2.imread('PngItem_3503026.png', cv2.IMREAD_UNCHANGED)
+ring_img = cv2.imread('assets/Rings/1.png', cv2.IMREAD_UNCHANGED)
 
 # Define a reference size for the ring (you can adjust this based on your application)
 reference_size = 50  # Example size in pixels

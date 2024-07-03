@@ -7,14 +7,14 @@ mp_hands = mp.solutions.hands
 hands = mp_hands.Hands()
 
 # Load the ring image (replace with your own ring image path)
-ring_img = cv2.imread('assets/PngItem_3503026.png', cv2.IMREAD_UNCHANGED)
+
 
 # Define a reference size for the ring (you can adjust this based on your application)
 reference_size = 50  # Example size in pixels
 
-def overlay_ring_on_hand(frame):
+def overlay_ring_on_hand(frame,selected_image_ring):
     frame1 = frame.copy()
-
+    ring_img = cv2.imread(selected_image_ring, cv2.IMREAD_UNCHANGED)
     # Convert the image to RGB
     image_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
@@ -60,10 +60,10 @@ def overlay_ring_on_hand(frame):
                     x_offset:x_offset + ring_resized.shape[1]] = overlay
 
         # Draw hand landmarks on the frame outside the overlay logic
-        for hand_landmarks in results.multi_hand_landmarks:
-            for landmark in hand_landmarks.landmark:
-                x = int(landmark.x * frame.shape[1])
-                y = int(landmark.y * frame.shape[0])
-                cv2.circle(frame1, (x, y), 5, (255, 0, 0), -1)
+        # for hand_landmarks in results.multi_hand_landmarks:
+        #     for landmark in hand_landmarks.landmark:
+        #         x = int(landmark.x * frame.shape[1])
+        #         y = int(landmark.y * frame.shape[0])
+        #         cv2.circle(frame1, (x, y), 5, (255, 0, 0), -1)
 
-    return frame1
+    return cv2.cvtColor(frame1, cv2.COLOR_BGR2RGB)

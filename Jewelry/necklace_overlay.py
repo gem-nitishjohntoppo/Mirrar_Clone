@@ -1,16 +1,16 @@
 import cv2
 import mediapipe as mp
 import numpy as np
-
 # Initialize MediaPipe Face Mesh
 mp_face_mesh = mp.solutions.face_mesh
 face_mesh = mp_face_mesh.FaceMesh(static_image_mode=False, max_num_faces=1, min_detection_confidence=0.5)
 
 # Load the jewelry image with transparency (e.g., a PNG file)
-jewelry_img = cv2.imread('assets/Necklace/4.png', cv2.IMREAD_UNCHANGED)
 
 
-def overlay_jewelry(frame):
+
+def overlay_jewelry(frame,selected_image_necklace):
+    jewelry_img = cv2.imread(selected_image_necklace, cv2.IMREAD_UNCHANGED)
     # Offset for positioning the jewelry below the chin
     offset_y = 30
 
