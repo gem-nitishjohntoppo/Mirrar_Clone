@@ -1,33 +1,3 @@
-from Jewelry.bracelet_overlay import add_bracelet_overlay
-from Jewelry.ring_overlay import overlay_ring_on_hand
-from Jewelry.earring_overlay import overlay_earring
-import streamlit as st
-from camera_input_live import camera_input_live
-from Jewelry.necklace_overlay import overlay_jewelry
-from streamlit_image_select import image_select
-
-# # Define available necklace images
-# necklace_images = ["Jewelry/assets/Necklace/1.png", "Jewelry/assets/Necklace/2.png", "Jewelry/assets/Necklace/3.png",
-#                    "Jewelry/assets/Necklace/4.png"]
-# ring_images = ["Jewelry/assets/Rings/1.png", "Jewelry/assets/Rings/2.png", "Jewelry/assets/Rings/3.png",
-#                "Jewelry/assets/Rings/4.png"]
-# ear_rings_images = ["Jewelry/assets/Ear-Rings/1.png", "Jewelry/assets/Ear-Rings/2.png",
-#                     "Jewelry/assets/Ear-Rings/3.png", "Jewelry/assets/Ear-Rings/4.png"]
-# # Create tabs for different types of jewelry
-# tab1, tab2, tab3, tab4 = st.tabs(["Necklace", "Ring", "Earring", "Bracelet"])
-#
-# with tab1:
-#     # Select ring image
-#     selected_image_necklace = image_select("Select a Necklace ", necklace_images, key="selected_image_necklace")
-# with tab2:
-#     # Select ring image
-#     selected_image_ring = image_select("Select a Ring ", ring_images, key="selected_image_ring")
-# with tab3:
-#     # Select ring image
-#     selected_image_ear_ring = image_select("Select a Ear Ring ", ear_rings_images, key="selected_image_ear-ring")
-#
-
-
 
 from Jewelry.bracelet_overlay import add_bracelet_overlay
 from Jewelry.ring_overlay import overlay_ring_on_hand
