@@ -6,4 +6,4 @@ streamlit
 streamlit-navigation-bar
 streamlit_image_select
 av
-streamlit-webrtc
+streamlit_webrtc
