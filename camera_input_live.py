@@ -18,7 +18,7 @@ auth_token = os.getenv('TWILIO_AUTH_TOKEN')
 client = Client(account_sid, auth_token)
 
 token = client.tokens.create()
-
+print(token.ice_servers)
 
 #TOKEN
 class VideoProcessor(VideoProcessorBase):
