@@ -71,4 +71,5 @@ def overlay_earring(frame, images):
                     frame[y_start:y_end, x_start:x_end, c] = (alpha_s * overlay_resized[:, :, c] +
                                                               alpha_l * frame[y_start:y_end, x_start:x_end, c])
     frame = cv2.flip(frame, 1)
-    return cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    # return cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    return frame

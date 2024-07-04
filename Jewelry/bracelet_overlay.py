@@ -52,4 +52,5 @@ def add_bracelet_overlay(frame, image):
                         # Update the frame with the overlay
                         frame1[y_offset:y_offset + bracelet_resized.shape[0], x_offset:x_offset + bracelet_resized.shape[1]] = overlay
     frame1 = cv2.flip(frame1, 1)
-    return cv2.cvtColor(frame1, cv2.COLOR_BGR2RGB)
+    # return cv2.cvtColor(frame1, cv2.COLOR_BGR2RGB)
+    return frame1
