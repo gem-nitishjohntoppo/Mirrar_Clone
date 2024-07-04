@@ -1,4 +1,4 @@
-
+import cv2
 from Jewelry.bracelet_overlay import add_bracelet_overlay
 from Jewelry.ring_overlay import overlay_ring_on_hand
 from Jewelry.earring_overlay import overlay_earring
@@ -11,8 +11,8 @@ from streamlit_image_select import image_select
 necklace_images = ["Jewelry/assets/Necklace/1.png", "Jewelry/assets/Necklace/2.png", "Jewelry/assets/Necklace/3.png", "Jewelry/assets/Necklace/4.png"]
 ring_images = ["Jewelry/assets/Rings/1.png", "Jewelry/assets/Rings/2.png", "Jewelry/assets/Rings/3.png", "Jewelry/assets/Rings/4.png"]
 ear_rings_images = ["Jewelry/assets/Ear-Rings/1.png", "Jewelry/assets/Ear-Rings/2.png", "Jewelry/assets/Ear-Rings/3.png", "Jewelry/assets/Ear-Rings/4.png"]
-bracelet_images = ["Jewelry/assets/Bracelets/1.png", "Jewelry/assets/Bracelets/2.png", "Jewelry/assets/Bracelets/3.png", "Jewelry/assets/Bracelets/4.png"]
-
+bracelet_images = ["Jewelry/assets/Bracelets/1.png", "Jewelry/assets/Bracelets/2.png", "Jewelry/assets/Bracelets/3.png"]
+alt_ear_images = ["Jewelry/assets/1.png","Jewelry/assets/2.png","Jewelry/assets/3.png","Jewelry/assets/4.png"]
 # Create tabs for different types of jewelry
 tab1, tab2, tab3, tab4 = st.tabs(["Necklace", "Ring", "Earring", "Bracelet"])
 
@@ -29,7 +29,7 @@ def handle_camera_feed(selected_image, overlay_function, key_prefix):
     frame_placeholder = st.empty()  # Placeholder for the camera feed
 
     # Start button to start the camera feed
-    if st.button("Start", key=f"start_{key_prefix}"):
+    if st.button("TRY ON", key=f"start_{key_prefix}"):
         stop_requested = False
         st.session_state[f'{key_prefix}_stop_requested'] = stop_requested
         frame_generator = camera_input_live()
@@ -37,7 +37,7 @@ def handle_camera_feed(selected_image, overlay_function, key_prefix):
         st.write("Starting camera feed...")
 
     # Stop button to stop the camera feed
-    if st.button("Stop", key=f"stop_{key_prefix}"):
+    if st.button("STOP", key=f"stop_{key_prefix}"):
         if frame_generator:
             stop_requested = True
             st.session_state[f'{key_prefix}_stop_requested'] = stop_requested
@@ -60,6 +60,7 @@ def handle_camera_feed(selected_image, overlay_function, key_prefix):
         try:
             for frame in frame_generator:
                 if frame is not None:
+                     # Flip the frame horizontally to create a mirror effect
                     frame_with_jewelry = overlay_function(frame, selected_image)
                     frame_placeholder.image(frame_with_jewelry, channels="RGB", use_column_width=True)
                 if stop_requested:
@@ -81,7 +82,17 @@ with tab2:
 
 with tab3:
     st.header("Earring")
+    # selected_image_ear_ring = image_select("Select an Earring", ear_rings_images, key="selected_image_earring")
+    # handle_camera_feed(selected_image_ear_ring, overlay_earring, "earring")
     selected_image_ear_ring = image_select("Select an Earring", ear_rings_images, key="selected_image_earring")
+
+    # Find the index of the selected image in the ear_rings_images list
+    index = ear_rings_images.index(selected_image_ear_ring)
+
+    # Use the corresponding image from alt_ear_images
+    selected_image_ear_ring = alt_ear_images[index]
+
+    # Proceed with handling the camera feed
     handle_camera_feed(selected_image_ear_ring, overlay_earring, "earring")
 
 with tab4:

@@ -55,5 +55,7 @@ def overlay_jewelry(frame,selected_image_necklace):
             for c in range(0, 3):
                 frame1[y_start:y_end, x_start:x_end, c] = (alpha_s * overlay_resized[:, :, c] +
                                                            alpha_l * frame[y_start:y_end, x_start:x_end, c])
+    frame1 = cv2.flip(frame1, 1)
     main_frame = cv2.cvtColor(frame1, cv2.COLOR_BGR2RGB)
+
     return main_frame

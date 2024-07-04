@@ -65,5 +65,5 @@ def overlay_ring_on_hand(frame,selected_image_ring):
         #         x = int(landmark.x * frame.shape[1])
         #         y = int(landmark.y * frame.shape[0])
         #         cv2.circle(frame1, (x, y), 5, (255, 0, 0), -1)
-
+    frame1 = cv2.flip(frame1, 1)
     return cv2.cvtColor(frame1, cv2.COLOR_BGR2RGB)
