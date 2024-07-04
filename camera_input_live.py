@@ -1,5 +1,5 @@
 import streamlit as st
-from streamlit_webrtc import webrtc_streamer, VideoProcessorBase, VideoHTMLAttributes
+from streamlit_webrtc import webrtc_streamer, VideoProcessorBase, VideoHTMLAttributes, RTCConfiguration
 import av
 import cv2
 
@@ -20,9 +20,19 @@ class VideoProcessor(VideoProcessorBase):
         return av.VideoFrame.from_ndarray(img, format="rgb24")
 
 def camera_input_live(key="default"):
+    # Define the RTC configuration with STUN server
+    rtc_config = RTCConfiguration(
+        {
+            "iceServers": [
+                {"urls": ["stun:stun.l.google.com:19302"]}  # STUN server
+            ]
+        }
+    )
+
     webrtc_ctx = webrtc_streamer(
         key=key,
         video_processor_factory=VideoProcessor,
+        rtc_configuration=rtc_config,
         media_stream_constraints={"video": True, "audio": False},
         video_html_attrs=VideoHTMLAttributes(
             autoPlay=True, controls=True, style={"width": "100%"},
