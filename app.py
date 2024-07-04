@@ -10,8 +10,8 @@ from streamlit_navigation_bar import st_navbar
 from camera_input_live import camera_input_live
 def load_page(page_name):
     if page_name == "Home":
-        st.title("Home Page")
-        st.write("Welcome to the Home Page!")
+        st.title("AR TRY ON")
+        # st.write("Welcome to the Home Page!")
     elif page_name == "Jewelry":
         exec(open("pages/jewelry.py").read())
     elif page_name == "Beauty":
