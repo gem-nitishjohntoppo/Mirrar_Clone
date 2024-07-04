@@ -2,7 +2,25 @@ import streamlit as st
 from streamlit_webrtc import webrtc_streamer, VideoProcessorBase, VideoHTMLAttributes, RTCConfiguration
 import av
 import cv2
+#TOKEN
 
+import os
+from dotenv import load_dotenv
+from twilio.rest import Client
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Find your Account SID and Auth Token at twilio.com/console
+# and set the environment variables. See http://twil.io/secure
+account_sid = os.getenv('TWILIO_ACCOUNT_SID')
+auth_token = os.getenv('TWILIO_AUTH_TOKEN')
+client = Client(account_sid, auth_token)
+
+token = client.tokens.create()
+
+
+#TOKEN
 class VideoProcessor(VideoProcessorBase):
     def __init__(self):
         self.overlay_function = None
@@ -20,12 +38,10 @@ class VideoProcessor(VideoProcessorBase):
         return av.VideoFrame.from_ndarray(img, format="rgb24")
 
 def camera_input_live(key="default"):
-    # Define the RTC configuration with STUN server
+    # Define the RTC configuration with Twilio ICE servers
     rtc_config = RTCConfiguration(
         {
-            "iceServers": [
-                {"urls": ["stun:stun.l.google.com:19302"]}  # STUN server
-            ]
+            "iceServers": token.ice_servers
         }
     )
 
