@@ -2,7 +2,7 @@ opencv-python-headless
 opencv-python
 mediapipe
 numpy
-streamlit
+streamlit==1.33.0
 streamlit-navigation-bar
 streamlit_image_select
 av
